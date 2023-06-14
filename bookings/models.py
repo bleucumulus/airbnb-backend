@@ -10,17 +10,27 @@ class Booking(CommonModel):
         EXPERIENCE = "experience", "Experience"
         
     kind = models.CharField(max_length=15, choices=BookingKindChoices.choices)
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="bookings",
+    )
+    
     room = models.ForeignKey(
         "rooms.Room",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL)
+        on_delete=models.SET_NULL,
+        related_name="bookings",
+    )
+    
     experience = models.ForeignKey(
         "experiences.Experience",
         null=True,
         blank=True,
-        on_delete=models.SET_NULL)
+        on_delete=models.SET_NULL,
+        related_name="bookings",
+    )
     
     # if user books "Room",
     check_in = models.DateField(null=True, blank=True,)

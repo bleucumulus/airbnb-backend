@@ -10,7 +10,7 @@ class ChattingRoomAdmin(admin.ModelAdmin):
         "updated_at",
     )
     list_filter = (
-        "created_at"
+        "created_at",
     )
 
 @admin.register(Message)
@@ -22,5 +22,5 @@ class MessageAdmin(admin.ModelAdmin):
         "created_at",
     )
     list_filter = (
-        "created_at"
+        "created_at",
     )

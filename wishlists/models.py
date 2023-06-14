@@ -5,9 +5,19 @@ from common.models import CommonModel
 class Wishlist(CommonModel):
     
     name = models.CharField(max_length=150)
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    rooms = models.ManyToManyField("rooms.Room",)
-    experiences = models.ManyToManyField("experiences.Experience",)
+    user = models.ForeignKey(
+        "users.User",
+        on_delete=models.CASCADE,
+        related_name="wishlists",
+    )
+    rooms = models.ManyToManyField(
+        "rooms.Room",
+         related_name="wishlists",
+    )
+    experiences = models.ManyToManyField(
+        "experiences.Experience",
+        related_name="wishlists",
+    )
     
     def __str__(self) -> str:
         return self.name
